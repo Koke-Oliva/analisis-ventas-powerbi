@@ -1,0 +1,25 @@
+relationship c3bfd90a-32a0-4f7b-8655-809932772439
+	fromColumn: Cobranzas.IDCliente
+	toColumn: Clientes.IDCliente
+
+relationship f49e949f-b22d-4040-97bc-e73db6e3992c
+	fromColumn: Facturas.IDCliente
+	toColumn: Clientes.IDCliente
+
+relationship c6f65dfc-1155-42c6-9c53-111ffa0390df
+	fromColumn: Facturas.IDCanal
+	toColumn: Canales.IDCanal
+
+relationship ed812985-56ea-4795-9e37-a9e0f34b97f2
+	fromColumn: Facturas.IDVendedor
+	toColumn: Vendedores.IDVendedor
+
+relationship 04c3ed73-112a-4c6e-9154-8c17e04169ed
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Facturas.FechaFactura
+	toColumn: Calendario.Fecha
+
+relationship 3f10bf6f-36b2-4ac1-bd6d-566e8698900f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Cobranzas.FechaCobro
+	toColumn: Calendario.Fecha

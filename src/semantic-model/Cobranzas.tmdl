@@ -1,0 +1,45 @@
+table Cobranzas
+	lineageTag: 44f2143a-729b-454d-9ebd-fc145cbfcff0
+
+	column IDCobranza
+		isHidden
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: IDCobranza
+
+	column IDFactura
+		isHidden
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: IDFactura
+
+	column FechaCobro
+		dataType: dateTime
+		formatString: Short Date
+		summarizeBy: none
+		sourceColumn: FechaCobro
+
+	column MontoCobrado
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: MontoCobrado
+
+	column IDCliente
+		isHidden
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: IDCliente
+
+	partition Cobranzas-fe4ca924-e002-427a-8fe7-bfb8c56a73b8 = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\Data\AnalisisVentas\Ejer PBI.xlsx"), null, true),
+				    Cobranzas_Sheet = Origen{[Item="Cobranzas",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Cobranzas_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"IDCobranza", Int64.Type}, {"IDFactura", Int64.Type}, {"FechaCobro", type date}, {"MontoCobrado", type number}, {"IDCliente", Int64.Type}})
+				in
+				    #"Tipo cambiado"
