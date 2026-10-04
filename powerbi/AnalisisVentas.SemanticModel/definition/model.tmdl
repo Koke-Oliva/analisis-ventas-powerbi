@@ -1,0 +1,23 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-ES
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Clientes","Canales","Cobranzas","Facturas","Vendedores","Medidas"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Clientes
+ref table Canales
+ref table Cobranzas
+ref table Facturas
+ref table Vendedores
+ref table Calendario
+ref table Medidas
+
+ref cultureInfo es-ES
