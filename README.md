@@ -1,8 +1,20 @@
 # Análisis de Ventas y Cobranzas con Power BI
 
-Proyecto de **Business Intelligence** desarrollado en Power BI a partir de un caso académico y posteriormente refactorizado para portafolio. Integra preparación de datos con Power Query, modelado analítico, medidas DAX y un informe de tres páginas orientado al seguimiento comercial.
+Caso de **Business Intelligence en Power BI** orientado al seguimiento de ventas y cobranzas. El proyecto partió como una evaluación académica y fue refactorizado para portafolio: preparación de datos con Power Query, modelo semántico, medidas DAX, calendario común y un dashboard de tres páginas.
 
 ![Resumen ejecutivo](assets/dashboard-resumen-ejecutivo.png)
+
+## Abrir el proyecto
+
+El proyecto Power BI está versionado en formato **PBIP**:
+
+```text
+powerbi/AnalisisVentas.pbip
+```
+
+Para revisarlo en Power BI Desktop, clona o descarga el repositorio y abre ese archivo. Las definiciones del informe **PBIR** y del modelo semántico **TMDL** quedan disponibles como texto dentro de `powerbi/`, por lo que también pueden revisarse directamente desde GitHub.
+
+> Los archivos Excel/CSV originales corresponden al material académico del curso y no se redistribuyen. Para actualizar los datos desde otra instalación de Power BI Desktop es necesario configurar las fuentes locales indicadas en Power Query.
 
 ## Objetivo
 
@@ -10,11 +22,11 @@ Construir un informe que permita:
 
 - monitorear ventas, cobranzas y saldo pendiente;
 - analizar desempeño por período, segmento, canal y vendedor;
-- explorar detalle por país y ciudad;
-- separar hechos, dimensiones y medidas de negocio;
-- documentar el modelo con artefactos versionables de Power BI (**TMDL** y **PBIR**).
+- explorar el detalle comercial por país y ciudad;
+- mantener una dimensión calendario común para ventas y cobranzas;
+- separar hechos, dimensiones y medidas de negocio.
 
-## Datos analizados
+## Alcance de los datos
 
 | Elemento | Registros / categorías |
 |---|---:|
@@ -25,7 +37,7 @@ Construir un informe que permita:
 | Vendedores | 12 |
 | Países | 21 |
 
-El período analizado comprende **2014–2016**. Los datos de 2016 son parciales y llegan hasta julio; por ello, ese año no debe compararse directamente con 2014 o 2015 sin considerar esta limitación.
+El período analizado comprende **2014–2016**. Los datos de **2016 son parciales hasta julio**, por lo que ese año no debe compararse directamente con 2014 o 2015 sin considerar esta limitación.
 
 ## Modelo de datos
 
@@ -41,25 +53,23 @@ flowchart LR
     Medidas -. DAX .-> Cobranzas
 ```
 
-- **Hechos:** `Facturas`, `Cobranzas`
+- **Tablas de hechos:** `Facturas`, `Cobranzas`
 - **Dimensiones:** `Clientes`, `Canales`, `Vendedores`, `Calendario`
 - **Medidas:** tabla dedicada `Medidas`
 
-La dimensión `Calendario` se relaciona con ventas y cobranzas e incorpora atributos temporales con ordenamiento explícito para meses y trimestres.
+La dimensión `Calendario` incluye año, mes, trimestre y día de semana, con columnas auxiliares para mantener el orden cronológico.
 
 ## Preparación de datos con Power Query
 
-Se aplicaron operaciones de conexión, limpieza y transformación, entre ellas:
+Entre las transformaciones aplicadas:
 
 - carga desde Excel y CSV;
 - promoción de encabezados;
 - asignación de tipos de datos;
-- separación y normalización de campos de ubicación;
-- preparación de las tablas utilizadas por el modelo analítico.
+- separación y normalización del campo de ubicación;
+- preparación de las tablas utilizadas por el modelo.
 
-Las rutas de origen publicadas en los extractos técnicos se dejaron **genéricas** (`C:\Data\AnalisisVentas\...`) para no exponer rutas personales.
-
-Los archivos fuente originales pertenecen al material académico del curso y **no se redistribuyen en este repositorio**.
+Las rutas publicadas se dejaron genéricas (`C:\Data\AnalisisVentas\...`) para evitar exponer rutas personales.
 
 ## Medidas DAX principales
 
@@ -86,29 +96,35 @@ Tasa Cobranza =
 DIVIDE([Total Cobros], [Total Ventas])
 ```
 
-`Tasa Cobranza` se interpreta como un indicador agregado dentro del contexto de filtro. No corresponde a una tasa de recuperación por cohorte de factura.
+`Tasa Cobranza` representa la razón agregada entre cobros y ventas dentro del contexto de filtro; **no** es una tasa de recuperación por cohorte de factura.
 
-## Informe
+## Dashboard
 
 ### 1. Resumen ejecutivo
 
-Incluye ventas, cobros, saldo pendiente, tasa de cobranza, clientes con venta y ticket promedio, además de evolución temporal y segmentación.
+![Resumen ejecutivo](assets/dashboard-resumen-ejecutivo.png)
+
+Presenta ventas, cobros, saldo pendiente, tasa de cobranza, clientes con venta y ticket promedio, además de evolución temporal y segmentación.
 
 ### 2. Análisis comercial
 
+![Análisis comercial](assets/dashboard-analisis-comercial.png)
+
 Incluye:
 
-- Top 6 vendedores por ventas acumuladas;
-- Top 6 canales por ventas acumuladas y composición por segmento;
+- seis vendedores con mayor venta acumulada;
+- seis canales con mayor venta acumulada y su composición por segmento;
 - ventas por año y segmento;
 - composición trimestral;
 - evolución de ventas y ticket promedio.
 
-Los conjuntos Top 6 se definen usando el ranking acumulado del período completo; los filtros del informe modifican los valores mostrados dentro de esas categorías.
+Los conjuntos Top 6 se definen usando el ranking acumulado del período completo. Los filtros del informe modifican los valores mostrados dentro de esas categorías.
 
 ### 3. Detalle comercial
 
-Incluye una tabla de ventas por canal, país y segmento, una matriz jerárquica y filtros por año, segmento, país y ciudad.
+![Detalle comercial](assets/dashboard-detalle-comercial.png)
+
+Incluye tabla de ventas por canal, país y segmento, matriz jerárquica y filtros por año, segmento, país y ciudad.
 
 Los filtros de **Año** y **Segmento** se sincronizan entre páginas para mantener el contexto de análisis.
 
@@ -121,30 +137,24 @@ Los filtros de **Año** y **Segmento** se sincronizan entre páginas para manten
 - El segmento **Persona** concentra aproximadamente **87,1 %** de las ventas acumuladas.
 - **CRM** presenta el mayor monto acumulado entre los canales del conjunto de datos.
 
-Estos resultados describen exclusivamente el conjunto de datos utilizado en el caso.
+Los resultados anteriores describen exclusivamente este conjunto de datos.
 
-## Estructura publicada
+## Estructura del repositorio
 
 ```text
-README.md
-assets/
-└── dashboard-resumen-ejecutivo.png
-src/
-├── semantic-model/
-│   ├── Calendario.tmdl
-│   ├── Medidas.tmdl
-│   ├── Facturas.tmdl
-│   ├── Cobranzas.tmdl
-│   ├── Clientes.tmdl
-│   ├── Canales.tmdl
-│   ├── Vendedores.tmdl
-│   └── relationships.tmdl
-└── report/
-    ├── report.json
-    └── pages.json
+.
+├── README.md
+├── assets/
+│   ├── dashboard-resumen-ejecutivo.png
+│   ├── dashboard-analisis-comercial.png
+│   └── dashboard-detalle-comercial.png
+└── powerbi/
+    ├── AnalisisVentas.pbip
+    ├── AnalisisVentas.Report/
+    └── AnalisisVentas.SemanticModel/
 ```
 
-Se publican **extractos técnicos revisables en GitHub** del modelo semántico y del informe. Los archivos locales de caché de Power BI, los datos académicos y la pauta del curso quedan fuera de la publicación.
+Los directorios locales de caché `.pbi/`, los archivos fuente académicos y la pauta de evaluación no forman parte de la publicación.
 
 ## Tecnologías
 
@@ -158,4 +168,4 @@ Se publican **extractos técnicos revisables en GitHub** del modelo semántico y
 
 ## Contexto académico
 
-La versión inicial se desarrolló como actividad final del curso **Power BI: Herramientas Básicas para el Análisis de Datos** de TELEDUC, Pontificia Universidad Católica de Chile. Posteriormente se refactorizaron el modelo, las medidas, las visualizaciones y la documentación para convertirlo en un caso demostrable de portafolio.
+La versión inicial se desarrolló como actividad final del curso **Power BI: Herramientas Básicas para el Análisis de Datos** de TELEDUC, Pontificia Universidad Católica de Chile. Posteriormente se revisaron y refactorizaron el modelo, las medidas, las visualizaciones y la documentación para convertirlo en un proyecto de portafolio.
