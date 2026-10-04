@@ -1,6 +1,6 @@
 # Análisis de Ventas y Cobranzas con Power BI
 
-Proyecto de **Business Intelligence** desarrollado en Power BI a partir de un caso académico y posteriormente refactorizado para portafolio. El trabajo integra preparación de datos con Power Query, modelado analítico, medidas DAX y un informe de tres páginas orientado al seguimiento comercial.
+Proyecto de **Business Intelligence** desarrollado en Power BI a partir de un caso académico y posteriormente refactorizado para portafolio. Integra preparación de datos con Power Query, modelado analítico, medidas DAX y un informe de tres páginas orientado al seguimiento comercial.
 
 ![Resumen ejecutivo](assets/dashboard-resumen-ejecutivo.png)
 
@@ -12,7 +12,7 @@ Construir un informe que permita:
 - analizar desempeño por período, segmento, canal y vendedor;
 - explorar detalle por país y ciudad;
 - separar hechos, dimensiones y medidas de negocio;
-- mantener el proyecto en un formato versionable mediante **Power BI Project (`.pbip`)**, **TMDL** y **PBIR**.
+- documentar el modelo con artefactos versionables de Power BI (**TMDL** y **PBIR**).
 
 ## Datos analizados
 
@@ -57,7 +57,9 @@ Se aplicaron operaciones de conexión, limpieza y transformación, entre ellas:
 - separación y normalización de campos de ubicación;
 - preparación de las tablas utilizadas por el modelo analítico.
 
-Los archivos fuente originales pertenecen al material académico del curso y **no se redistribuyen en este repositorio**. El paquete PBIP usa rutas locales genéricas como referencia; para reproducir una actualización es necesario configurar las fuentes correspondientes en Power BI Desktop.
+Las rutas de origen publicadas en los extractos técnicos se dejaron **genéricas** (`C:\Data\AnalisisVentas\...`) para no exponer rutas personales.
+
+Los archivos fuente originales pertenecen al material académico del curso y **no se redistribuyen en este repositorio**.
 
 ## Medidas DAX principales
 
@@ -90,13 +92,9 @@ DIVIDE([Total Cobros], [Total Ventas])
 
 ### 1. Resumen ejecutivo
 
-![Resumen ejecutivo](assets/dashboard-resumen-ejecutivo.png)
-
 Incluye ventas, cobros, saldo pendiente, tasa de cobranza, clientes con venta y ticket promedio, además de evolución temporal y segmentación.
 
 ### 2. Análisis comercial
-
-![Análisis comercial](assets/dashboard-analisis-comercial.png)
 
 Incluye:
 
@@ -109,8 +107,6 @@ Incluye:
 Los conjuntos Top 6 se definen usando el ranking acumulado del período completo; los filtros del informe modifican los valores mostrados dentro de esas categorías.
 
 ### 3. Detalle comercial
-
-![Detalle comercial](assets/dashboard-detalle-comercial.png)
 
 Incluye una tabla de ventas por canal, país y segmento, una matriz jerárquica y filtros por año, segmento, país y ciudad.
 
@@ -127,20 +123,28 @@ Los filtros de **Año** y **Segmento** se sincronizan entre páginas para manten
 
 Estos resultados describen exclusivamente el conjunto de datos utilizado en el caso.
 
-## Archivos del repositorio
+## Estructura publicada
 
 ```text
 README.md
-AnalisisVentas-PBIP.zip
 assets/
-src/semantic-model/
+└── dashboard-resumen-ejecutivo.png
+src/
+├── semantic-model/
+│   ├── Calendario.tmdl
+│   ├── Medidas.tmdl
+│   ├── Facturas.tmdl
+│   ├── Cobranzas.tmdl
+│   ├── Clientes.tmdl
+│   ├── Canales.tmdl
+│   ├── Vendedores.tmdl
+│   └── relationships.tmdl
+└── report/
+    ├── report.json
+    └── pages.json
 ```
 
-- **`AnalisisVentas-PBIP.zip`** contiene el proyecto completo en formato PBIP, con definiciones PBIR y TMDL.
-- **`src/semantic-model/`** expone en texto las piezas técnicas principales del modelo para revisión rápida desde GitHub.
-- **`assets/`** contiene capturas limpias de las tres páginas del informe.
-
-Los directorios locales `.pbi/` y los archivos fuente académicos quedan fuera de la publicación.
+Se publican **extractos técnicos revisables en GitHub** del modelo semántico y del informe. Los archivos locales de caché de Power BI, los datos académicos y la pauta del curso quedan fuera de la publicación.
 
 ## Tecnologías
 
