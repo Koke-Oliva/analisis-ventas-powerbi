@@ -1,0 +1,30 @@
+{
+  "$schema":"https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name":"e331f8d050ee464c26e5",
+  "position":{"x":950,"y":275,"z":3000,"height":415,"width":310},
+  "visual":{
+    "visualType":"slicer",
+    "query":{"queryState":{"Values":{"projections":[
+      {"field":{"Column":{"Expression":{"SourceRef":{"Entity":"Clientes"}},"Property":"País"}},"queryRef":"Clientes.País","active":true},
+      {"field":{"Column":{"Expression":{"SourceRef":{"Entity":"Clientes"}},"Property":"Ciudad"}},"queryRef":"Clientes.Ciudad","active":false}
+    ]}}},
+    "expansionStates":[{"roles":["Values"],"levels":[
+      {"queryRefs":["Clientes.País"],"isCollapsed":true,"identityKeys":[{"Column":{"Expression":{"SourceRef":{"Entity":"Clientes"}},"Property":"País"}}],"isPinned":true},
+      {"queryRefs":["Clientes.Ciudad"],"isCollapsed":true,"isPinned":true}
+    ],"root":{}}],
+    "objects":{
+      "data":[{"properties":{"mode":{"expr":{"Literal":{"Value":"'Dropdown'"}}}}}],
+      "general":[{"properties":{}}],
+      "header":[{"properties":{"fontFamily":{"expr":{"Literal":{"Value":"'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"}}},"textSize":{"expr":{"Literal":{"Value":"10D"}}}}}],
+      "items":[{"properties":{"textSize":{"expr":{"Literal":{"Value":"10D"}}}}}]
+    },
+    "drillFilterOtherVisuals":true,
+    "visualContainerObjects":{
+      "title":[{"properties":{"show":{"expr":{"Literal":{"Value":"false"}}},"alignment":{"expr":{"Literal":{"Value":"'left'"}}},"fontFamily":{"expr":{"Literal":{"Value":"'Segoe UI Semibold'"}}},"fontSize":{"expr":{"Literal":{"Value":"12D"}}},"fontColor":{"solid":{"color":{"expr":{"Literal":{"Value":"'#0F172A'"}}}}},"background":{"solid":{"color":{"expr":{"Literal":{"Value":"'#FFFFFF'"}}}}}}}],
+      "background":[{"properties":{"show":{"expr":{"Literal":{"Value":"true"}}},"color":{"solid":{"color":{"expr":{"Literal":{"Value":"'#FFFFFF'"}}}}},"transparency":{"expr":{"Literal":{"Value":"0D"}}}}}],
+      "border":[{"properties":{"show":{"expr":{"Literal":{"Value":"true"}}},"color":{"solid":{"color":{"expr":{"Literal":{"Value":"'#DCE3EA'"}}}}},"radius":{"expr":{"Literal":{"Value":"8D"}}}}}],
+      "dropShadow":[{"properties":{"show":{"expr":{"Literal":{"Value":"false"}}}}}],
+      "visualHeader":[{"properties":{"show":{"expr":{"Literal":{"Value":"false"}}}}}]
+    }
+  }
+}
