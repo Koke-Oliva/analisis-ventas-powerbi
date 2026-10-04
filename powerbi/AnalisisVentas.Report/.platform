@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Análisis de Ventas y Cobranzas"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "59b69a74-507d-4622-911d-59ed2b611189"
+  }
+}
