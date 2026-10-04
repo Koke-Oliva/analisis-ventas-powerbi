@@ -1,0 +1,36 @@
+table Vendedores
+	lineageTag: 5c963443-2a2a-4ecd-b640-fab4031d95e8
+
+	column IDVendedor
+		isHidden
+		dataType: int64
+		formatString: 0
+		lineageTag: 98b6d666-f302-44ea-9a44-83ab7a864965
+		summarizeBy: none
+		sourceColumn: IDVendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vendedor
+		dataType: string
+		lineageTag: a4097df0-a454-4cc6-bf13-594ce9f53ef4
+		summarizeBy: none
+		sourceColumn: Vendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Vendedores-6998fefe-020c-4c6c-b754-2c44053ca66a = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\Data\AnalisisVentas\Ejer PBI.xlsx"), null, true),
+				    Vendedores_Sheet = Origen{[Item="Vendedores",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Vendedores_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"IDVendedor", Int64.Type}, {"Vendedor", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
