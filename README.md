@@ -2,7 +2,7 @@
 
 Proyecto de **Business Intelligence** desarrollado en Power BI a partir de un caso académico y posteriormente refactorizado para portafolio. Integra preparación de datos con Power Query, modelado analítico, medidas DAX y un informe de tres páginas orientado al seguimiento comercial.
 
-![Resumen ejecutivo](assets/dashboard-resumen-ejecutivo.jpg)
+![Resumen ejecutivo](assets/dashboard-resumen-ejecutivo.png)
 
 ## Objetivo
 
@@ -128,7 +128,7 @@ Estos resultados describen exclusivamente el conjunto de datos utilizado en el c
 ```text
 README.md
 assets/
-└── dashboard-resumen-ejecutivo.jpg
+└── dashboard-resumen-ejecutivo.png
 src/
 ├── semantic-model/
 │   ├── Calendario.tmdl
