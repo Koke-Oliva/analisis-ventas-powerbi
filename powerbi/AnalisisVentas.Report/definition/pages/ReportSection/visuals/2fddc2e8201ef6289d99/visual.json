@@ -1,0 +1,31 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "2fddc2e8201ef6289d99",
+  "position": {"x":20,"y":105,"z":0,"height":585,"width":420},
+  "visual": {
+    "visualType":"tableEx",
+    "query":{
+      "queryState":{"Values":{"projections":[
+        {"field":{"Column":{"Expression":{"SourceRef":{"Entity":"Canales"}},"Property":"Canal"}},"queryRef":"Canales.Canal"},
+        {"field":{"Column":{"Expression":{"SourceRef":{"Entity":"Clientes"}},"Property":"País"}},"queryRef":"Clientes.País"},
+        {"field":{"Column":{"Expression":{"SourceRef":{"Entity":"Clientes"}},"Property":"Segmento"}},"queryRef":"Clientes.Segmento"},
+        {"field":{"Measure":{"Expression":{"SourceRef":{"Entity":"Medidas"}},"Property":"Total Ventas"}},"queryRef":"Medidas.Total Ventas"}
+      ]}},
+      "sortDefinition":{"sort":[{"field":{"Column":{"Expression":{"SourceRef":{"Entity":"Clientes"}},"Property":"País"}},"direction":"Ascending"}]}
+    },
+    "objects":{
+      "total":[{"properties":{"backColor":{"solid":{"color":{"expr":{"Literal":{"Value":"'#E2E8F0'"}}}}},"fontColor":{"solid":{"color":{"expr":{"Literal":{"Value":"'#0F172A'"}}}}},"textSize":{"expr":{"Literal":{"Value":"10D"}}}}}],
+      "columnHeaders":[{"properties":{"fontColor":{"solid":{"color":{"expr":{"Literal":{"Value":"'#FFFFFF'"}}}}},"backColor":{"solid":{"color":{"expr":{"Literal":{"Value":"'#1E3A8A'"}}}}},"textSize":{"expr":{"Literal":{"Value":"10D"}}}}}],
+      "values":[{"properties":{"backColorPrimary":{"solid":{"color":{"expr":{"Literal":{"Value":"'#FFFFFF'"}}}}},"backColorSecondary":{"solid":{"color":{"expr":{"Literal":{"Value":"'#F8FAFC'"}}}}},"fontColorPrimary":{"solid":{"color":{"expr":{"Literal":{"Value":"'#334155'"}}}}},"fontColorSecondary":{"solid":{"color":{"expr":{"Literal":{"Value":"'#334155'"}}}}},"textSize":{"expr":{"Literal":{"Value":"9D"}}}}}]
+    },
+    "drillFilterOtherVisuals":true,
+    "visualContainerObjects":{
+      "title":[{"properties":{"show":{"expr":{"Literal":{"Value":"true"}}},"alignment":{"expr":{"Literal":{"Value":"'left'"}}},"fontFamily":{"expr":{"Literal":{"Value":"'Segoe UI Semibold'"}}},"fontSize":{"expr":{"Literal":{"Value":"12D"}}},"fontColor":{"solid":{"color":{"expr":{"Literal":{"Value":"'#0F172A'"}}}}},"background":{"solid":{"color":{"expr":{"Literal":{"Value":"'#FFFFFF'"}}}}},"text":{"expr":{"Literal":{"Value":"'Detalle de ventas'"}}}}}],
+      "background":[{"properties":{"show":{"expr":{"Literal":{"Value":"true"}}},"color":{"solid":{"color":{"expr":{"Literal":{"Value":"'#FFFFFF'"}}}}},"transparency":{"expr":{"Literal":{"Value":"0D"}}}}}],
+      "border":[{"properties":{"show":{"expr":{"Literal":{"Value":"true"}}},"color":{"solid":{"color":{"expr":{"Literal":{"Value":"'#DCE3EA'"}}}}},"radius":{"expr":{"Literal":{"Value":"8D"}}}}}],
+      "dropShadow":[{"properties":{"show":{"expr":{"Literal":{"Value":"false"}}}}}],
+      "visualHeader":[{"properties":{"show":{"expr":{"Literal":{"Value":"false"}}}}}],
+      "stylePreset":[{"properties":{"name":{"expr":{"Literal":{"Value":"'None'"}}}}}]
+    }
+  }
+}
