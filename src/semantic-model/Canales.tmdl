@@ -1,0 +1,23 @@
+table Canales
+	column IDCanal
+		isHidden
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: IDCanal
+
+	column Canal
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Canal
+
+	partition Canales-69fddee5-6810-4b76-89b8-98ed683eae6b = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\Data\AnalisisVentas\Ejer PBI.xlsx"), null, true),
+				    Canales_Sheet = Origen{[Item="Canales",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Canales_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"IDCanal", Int64.Type}, {"Canal", type text}})
+				in
+				    #"Tipo cambiado"

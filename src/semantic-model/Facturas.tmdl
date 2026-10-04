@@ -1,0 +1,65 @@
+table Facturas
+	lineageTag: 05c5bc0c-442c-48d4-a88f-218d6eb77bd1
+
+	column IDFactura
+		isHidden
+		dataType: int64
+		formatString: 0
+		lineageTag: 6fea87b7-aa24-4fa1-b62c-b8a5769eb599
+		summarizeBy: none
+		sourceColumn: IDFactura
+
+	column FechaFactura
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 9b77e059-7587-4a23-85f5-334c2f0eb6ab
+		summarizeBy: none
+		sourceColumn: FechaFactura
+
+	column IDCliente
+		isHidden
+		dataType: int64
+		formatString: 0
+		lineageTag: b7608aa5-e221-494c-b3f4-f9e8eacc5bd7
+		summarizeBy: none
+		sourceColumn: IDCliente
+
+	column IDVendedor
+		isHidden
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e1017fd-e702-4e98-8904-24003de5f576
+		summarizeBy: none
+		sourceColumn: IDVendedor
+
+	column IDCanal
+		isHidden
+		dataType: int64
+		formatString: 0
+		lineageTag: d2d47e8a-2432-4cd0-8dc8-56ca119ecfad
+		summarizeBy: none
+		sourceColumn: IDCanal
+
+	column MontoSinImp
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: MontoSinImp
+
+	column Impuestos
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: Impuestos
+
+	column 'Monto Factura' = (Facturas[MontoSinImp]+Facturas[Impuestos])
+		summarizeBy: sum
+
+	partition Facturas-04eb7661-6932-4210-800d-65432ebe1454 = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\Data\AnalisisVentas\Ejer PBI.xlsx"), null, true),
+				    Facturas_Sheet = Origen{[Item="Facturas",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Facturas_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"IDFactura", Int64.Type}, {"FechaFactura", type date}, {"IDCliente", Int64.Type}, {"IDVendedor", Int64.Type}, {"IDCanal", Int64.Type}, {"MontoSinImp", type number}, {"Impuestos", type number}})
+				in
+				    #"Tipo cambiado"
