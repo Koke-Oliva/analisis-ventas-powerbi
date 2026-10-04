@@ -1,0 +1,81 @@
+table Clientes
+	lineageTag: b1506d63-1965-41e5-b111-cd11193d0f1c
+
+	column IDCliente
+		isHidden
+		dataType: int64
+		formatString: 0
+		lineageTag: 47c3a8f8-7e8f-47e6-b3a1-dcef5e2c7896
+		summarizeBy: none
+		sourceColumn: IDCliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cliente
+		dataType: string
+		lineageTag: f068915f-4201-42b3-b053-1a5cd3522d9f
+		summarizeBy: none
+		sourceColumn: Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segmento
+		dataType: string
+		lineageTag: 3e2303b2-c09d-4b8f-9506-be65fbc8af79
+		summarizeBy: none
+		sourceColumn: Segmento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Teléfono
+		isHidden
+		dataType: int64
+		formatString: 0
+		lineageTag: ac069c05-9237-4066-9f97-c1632e941a31
+		summarizeBy: sum
+		sourceColumn: Teléfono
+
+		annotation SummarizationSetBy = Automatic
+
+	column País
+		dataType: string
+		lineageTag: 62902b89-3ae8-40f5-89f2-b5ac83a9c08b
+		summarizeBy: none
+		sourceColumn: País
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ciudad
+		dataType: string
+		lineageTag: af23ac29-b7b1-4308-bb7f-081dcb4991cd
+		summarizeBy: none
+		sourceColumn: Ciudad
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ciudad/País = Clientes[Ciudad]&","&Clientes[País]
+		lineageTag: cef3a483-a784-4d9e-9c7b-9ba937eed0e8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Clientes-1fd0fb07-b0c3-4281-a89a-6c4d4c7f087b = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(File.Contents("C:\Data\AnalisisVentas\Clientes.csv"),[Delimiter=";", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}}),
+				    #"Filas superiores quitadas" = Table.Skip(#"Tipo cambiado",1),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(#"Filas superiores quitadas", [PromoteAllScalars=true]),
+				    #"Tipo cambiado1" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"IDCliente", Int64.Type}, {"Cliente", type text}, {"Segmento", type text}, {"Teléfono", Int64.Type}, {"Ubicación", type text}}),
+				    #"Dividir columna por delimitador" = Table.SplitColumn(#"Tipo cambiado1", "Ubicación", Splitter.SplitTextByDelimiter(",", QuoteStyle.Csv), {"Ubicación.1", "Ubicación.2"}),
+				    #"Separa Ubicación" = Table.TransformColumnTypes(#"Dividir columna por delimitador",{{"Ubicación.1", type text}, {"Ubicación.2", type text}}),
+				    #"Columnas con nombre cambiado" = Table.RenameColumns(#"Separa Ubicación",{{"Ubicación.1", "Ciudad"}, {"Ubicación.2", "País"}}),
+				    #"Columnas reordenadas" = Table.ReorderColumns(#"Columnas con nombre cambiado",{"IDCliente", "Cliente", "Segmento", "Teléfono", "País", "Ciudad"})
+				in
+				    #"Columnas reordenadas"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
