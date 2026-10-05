@@ -16,7 +16,7 @@ Esta versión usa **datos sintéticos generados dentro de Power Query**, por lo 
 
 ### Proyecto original — revisión técnica
 
-También está disponible **[AnalisisVentas-PBIP.zip](https://github.com/Koke-Oliva/analisis-ventas-powerbi/raw/refs/heads/main/AnalisisVentas-PBIP.zip)**. Este paquete conserva las consultas del proyecto original con rutas locales genéricas, por ejemplo `C:\\Data\\AnalisisVentas\\...`.
+También está disponible **[AnalisisVentas-PBIP-Original.zip](https://github.com/Koke-Oliva/analisis-ventas-powerbi/raw/refs/heads/main/AnalisisVentas-PBIP-Original.zip)**. Este paquete conserva las consultas del proyecto original con rutas locales genéricas, por ejemplo `C:\\Data\\AnalisisVentas\\...`.
 
 Puede abrirse para revisar la estructura PBIP, el modelo semántico y el informe, pero **no puede actualizarse ni reproducir exactamente las cifras sin los archivos fuente originales** (`Ejer PBI.xlsx` y `Clientes.csv`), que no se redistribuyen.
 
@@ -149,7 +149,7 @@ Estos resultados describen exclusivamente el conjunto de datos utilizado en el c
 
 ```text
 README.md
-AnalisisVentas-PBIP.zip
+AnalisisVentas-PBIP-Original.zip
 AnalisisVentas-PBIP-Demo.zip
 assets/
 ├── dashboard-resumen-ejecutivo.png

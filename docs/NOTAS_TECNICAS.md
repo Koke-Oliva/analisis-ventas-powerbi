@@ -23,7 +23,7 @@ Los valores de esta demo son demostrativos y **no deben compararse con las cifra
 
 ### 2. Proyecto original
 
-Archivo: `AnalisisVentas-PBIP.zip`
+Archivo: `AnalisisVentas-PBIP-Original.zip`
 
 Conserva las consultas del proyecto académico/refactorizado y permite revisar la estructura del informe y del modelo.
 
