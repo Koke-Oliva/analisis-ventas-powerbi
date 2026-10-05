@@ -4,11 +4,21 @@ Proyecto de **Business Intelligence** desarrollado en Power BI a partir de un ca
 
 ![Resumen ejecutivo](assets/dashboard-resumen-ejecutivo.png)
 
-## Abrir el proyecto
+## Abrir y reproducir el proyecto
 
-Descarga **[AnalisisVentas-PBIP.zip](AnalisisVentas-PBIP.zip)**, descomprímelo y abre `AnalisisVentas.pbip` con Power BI Desktop. El paquete incluye `AnalisisVentas.Report/` y `AnalisisVentas.SemanticModel/`, sin caché local `.pbi/`.
+### Demo reproducible — recomendada
 
-Los archivos fuente académicos no se redistribuyen; las consultas usan rutas locales genéricas y deben reconfigurarse para actualizar los datos.
+Descarga **[AnalisisVentas-PBIP-Demo.zip](https://github.com/Koke-Oliva/analisis-ventas-powerbi/raw/refs/heads/main/AnalisisVentas-PBIP-Demo.zip)**, descomprímelo y abre `AnalisisVentas.pbip` con Power BI Desktop.
+
+Esta versión usa **datos sintéticos generados dentro de Power Query**, por lo que no requiere archivos externos ni credenciales. Permite revisar el modelo, actualizarlo e interactuar con las tres páginas del informe.
+
+> **Importante:** la demo conserva la estructura analítica, las medidas, relaciones, filtros y visualizaciones del proyecto, pero sus valores numéricos no corresponden a los datos académicos originales ni deben compararse con las capturas de este README.
+
+### Proyecto original — revisión técnica
+
+También está disponible **[AnalisisVentas-PBIP.zip](https://github.com/Koke-Oliva/analisis-ventas-powerbi/raw/refs/heads/main/AnalisisVentas-PBIP.zip)**. Este paquete conserva las consultas del proyecto original con rutas locales genéricas, por ejemplo `C:\\Data\\AnalisisVentas\\...`.
+
+Puede abrirse para revisar la estructura PBIP, el modelo semántico y el informe, pero **no puede actualizarse ni reproducir exactamente las cifras sin los archivos fuente originales** (`Ejer PBI.xlsx` y `Clientes.csv`), que no se redistribuyen.
 
 ## Objetivo
 
@@ -140,6 +150,7 @@ Estos resultados describen exclusivamente el conjunto de datos utilizado en el c
 ```text
 README.md
 AnalisisVentas-PBIP.zip
+AnalisisVentas-PBIP-Demo.zip
 assets/
 ├── dashboard-resumen-ejecutivo.png
 ├── dashboard-analisis-comercial.png
@@ -161,7 +172,7 @@ src/
     └── pages.json
 ```
 
-El ZIP contiene el **proyecto PBIP completo**. La carpeta `src/` mantiene extractos técnicos en texto para revisión rápida de DAX, calendario, relaciones y metadatos del informe. Las notas de reproducibilidad y alcance están en `docs/NOTAS_TECNICAS.md`.
+El repositorio ofrece dos formas de revisión: el paquete **original**, que conserva las consultas y requiere las fuentes académicas para actualizarse, y una **demo reproducible** con datos sintéticos autocontenidos. La carpeta `src/` mantiene extractos técnicos en texto para revisión rápida de DAX, calendario, relaciones y metadatos del informe. Las notas de reproducibilidad y alcance están en `docs/NOTAS_TECNICAS.md`.
 
 ## Tecnologías
 
