@@ -98,9 +98,13 @@ DIVIDE([Total Cobros], [Total Ventas])
 
 ### 1. Resumen ejecutivo
 
+![Resumen ejecutivo](assets/dashboard-resumen-ejecutivo.png)
+
 Incluye ventas, cobros, saldo pendiente, tasa de cobranza, clientes con venta y ticket promedio, además de evolución temporal y segmentación.
 
 ### 2. Análisis comercial
+
+![Análisis comercial](assets/dashboard-analisis-comercial.png)
 
 Incluye:
 
@@ -113,6 +117,8 @@ Incluye:
 Los conjuntos Top 6 se definen usando el ranking acumulado del período completo; los filtros del informe modifican los valores mostrados dentro de esas categorías.
 
 ### 3. Detalle comercial
+
+![Detalle comercial](assets/dashboard-detalle-comercial.png)
 
 Incluye una tabla de ventas por canal, país y segmento, una matriz jerárquica y filtros por año, segmento, país y ciudad.
 
@@ -133,8 +139,13 @@ Estos resultados describen exclusivamente el conjunto de datos utilizado en el c
 
 ```text
 README.md
+AnalisisVentas-PBIP.zip
 assets/
-├── dashboard-resumen-ejecutivo.png\n├── dashboard-analisis-comercial.png\n└── dashboard-detalle-comercial.png
+├── dashboard-resumen-ejecutivo.png
+├── dashboard-analisis-comercial.png
+└── dashboard-detalle-comercial.png
+docs/
+└── NOTAS_TECNICAS.md
 src/
 ├── semantic-model/
 │   ├── Calendario.tmdl
@@ -150,7 +161,7 @@ src/
     └── pages.json
 ```
 
-El ZIP contiene el proyecto PBIP completo. Además, se publican **extractos técnicos revisables en GitHub** del modelo semántico y del informe. Los archivos locales de caché de Power BI, los datos académicos y la pauta del curso quedan fuera de la publicación.
+El ZIP contiene el **proyecto PBIP completo**. La carpeta `src/` mantiene extractos técnicos en texto para revisión rápida de DAX, calendario, relaciones y metadatos del informe. Las notas de reproducibilidad y alcance están en `docs/NOTAS_TECNICAS.md`.
 
 ## Tecnologías
 
@@ -164,4 +175,4 @@ El ZIP contiene el proyecto PBIP completo. Además, se publican **extractos téc
 
 ## Contexto académico
 
-La versión inicial se desarrolló como actividad final del curso **Power BI: Herramientas Básicas para el Análisis de Datos** de TELEDUC, Pontificia Universidad Católica de Chile. Posteriormente se refactorizaron el modelo, las medidas, las visualizaciones y la documentación para convertirlo en un caso demostrable de portafolio.
+La versión inicial se desarrolló como actividad final del curso **Power BI: Herramientas Básicas para el Análisis de Datos** de TELEDUC, Pontificia Universidad Católica de Chile. Posteriormente se refactorizaron el modelo, las medidas, las visualizaciones y la documentación para convertirlo en un caso demostrable de portafolio. La publicación busca mostrar competencias de nivel junior en BI/Power BI de forma verificable, sin presentar el proyecto como una solución productiva.
