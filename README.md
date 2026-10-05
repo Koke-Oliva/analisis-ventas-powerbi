@@ -4,6 +4,12 @@ Proyecto de **Business Intelligence** desarrollado en Power BI a partir de un ca
 
 ![Resumen ejecutivo](assets/dashboard-resumen-ejecutivo.png)
 
+## Abrir el proyecto
+
+Descarga **[AnalisisVentas-PBIP.zip](AnalisisVentas-PBIP.zip)**, descomprímelo y abre `AnalisisVentas.pbip` con Power BI Desktop. El paquete incluye `AnalisisVentas.Report/` y `AnalisisVentas.SemanticModel/`, sin caché local `.pbi/`.
+
+Los archivos fuente académicos no se redistribuyen; las consultas usan rutas locales genéricas y deben reconfigurarse para actualizar los datos.
+
 ## Objetivo
 
 Construir un informe que permita:
@@ -128,7 +134,7 @@ Estos resultados describen exclusivamente el conjunto de datos utilizado en el c
 ```text
 README.md
 assets/
-└── dashboard-resumen-ejecutivo.png
+├── dashboard-resumen-ejecutivo.png\n├── dashboard-analisis-comercial.png\n└── dashboard-detalle-comercial.png
 src/
 ├── semantic-model/
 │   ├── Calendario.tmdl
@@ -144,7 +150,7 @@ src/
     └── pages.json
 ```
 
-Se publican **extractos técnicos revisables en GitHub** del modelo semántico y del informe. Los archivos locales de caché de Power BI, los datos académicos y la pauta del curso quedan fuera de la publicación.
+El ZIP contiene el proyecto PBIP completo. Además, se publican **extractos técnicos revisables en GitHub** del modelo semántico y del informe. Los archivos locales de caché de Power BI, los datos académicos y la pauta del curso quedan fuera de la publicación.
 
 ## Tecnologías
 
